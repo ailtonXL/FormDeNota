@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados
+// Conexão com o BD
 $conn = new mysqli("localhost", "root", "", "sistema_escolar");
 
 // Verificar conexão
@@ -7,7 +7,7 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Mensagem de feedback
+// feedback
 $mensagem = "";
 
 // Verifica se o formulário foi enviado
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Calcula a média
     $media = ($nota1 + $nota2) / 2;
 
-    // Insere os dados no banco de dados
+    // Insere os dados no BD
     $sql = "INSERT INTO alunos (nome, rgm, turma, nota1, nota2, media) 
             VALUES ('$nome', '$rgm', '$turma', $nota1, $nota2, $media)";
 
@@ -46,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="container mt-5">
         <h2>Formulário de Notas</h2>
         
-        <!-- Exibe a mensagem de sucesso ou erro -->
         <?php if ($mensagem): ?>
             <div class="alert alert-info">
                 <?php echo $mensagem; ?>
@@ -82,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button type="submit" class="btn btn-primary">Salvar Notas</button>
         </form>
 
-        <!-- Botão para voltar para o login -->
+        <!--voltar para o login -->
         <a href="index.php" class="btn btn-secondary mt-3">Voltar para o Login</a>
     </div>
 </body>
