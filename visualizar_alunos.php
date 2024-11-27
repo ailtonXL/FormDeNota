@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados
+// Conexão com o BD
 $conn = new mysqli("localhost", "root", "", "sistema_escolar");
 
 // Verificar conexão
@@ -7,7 +7,7 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Buscar todos os alunos do banco de dados
+// Buscar todos os alunos do BD
 $sql = "SELECT id, nome, rgm, turma, nota1, nota2, media FROM alunos";
 $result = $conn->query($sql);
 ?>
