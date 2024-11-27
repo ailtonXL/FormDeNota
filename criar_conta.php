@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados
+// Conexão com o BD
 $conn = new mysqli("localhost", "root", "", "sistema_escolar");
 
 // Verificar conexão
@@ -15,17 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Criptografando a senha
+    // criptografia
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Verifica se o nome de usuário é "adm" para definir como admin
+    // adm
     $tipo = ($nome === 'adm') ? 'admin' : 'usuario';
 
-    // Inserir no banco de dados
+    // Inserir no BD
     $sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha_hash', '$tipo')";
     
     if ($conn->query($sql) === TRUE) {
-        // Criar sessão e redirecionar para login após criação da conta
+        // criar e voltar pro login
         session_start();
         $_SESSION['usuario_nome'] = $nome;
         $_SESSION['usuario_email'] = $email;
