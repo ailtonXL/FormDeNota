@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados
+// Conexão com o BD
 $conn = new mysqli("localhost", "root", "", "sistema_escolar");
 
 // Verificar conexão
@@ -28,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // Para outros usuários, consulta o banco de dados
+    // Para outros usuários, consulta o BD
     $sql = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
-        // O email foi encontrado no banco, agora vamos verificar a senha
+        // O email foi encontrado no banco
         $usuario = $resultado->fetch_assoc();
-        $senha_hash = $usuario['senha'];  // A senha armazenada no banco de dados
+        $senha_hash = $usuario['senha'];
 
         // Verifica se a senha fornecida é a mesma que a criptografada
         if (password_verify($senha, $senha_hash)) {
@@ -71,8 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <div class="container">
         <h2 class="mt-5">Login</h2>
-        
-        <!-- Exibe a mensagem de erro ou sucesso -->
+    
         <?php if ($mensagem): ?>
             <div class="alert alert-danger">
                 <?php echo $mensagem; ?>
@@ -93,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
 
-        <!-- Botão de Criar Conta -->
+        <!--Criar Conta -->
         <div class="mt-3">
             <a href="criar_conta.php" class="btn btn-secondary">Criar Conta</a>
         </div>
